@@ -27,9 +27,10 @@
         android:gravity="center">
 
         <EditText
+            android:inputType="text"
             android:layout_height="50dp"
             android:layout_width = "300dp"
-            android:hint="아이디를 입력하세요"
+            android:hint="@string/input_id"
             android:lines="1"
             android:singleLine="true"
             android:textColorHint="@color/colorGray"
@@ -41,7 +42,7 @@
         <EditText
             android:layout_height="50dp"
             android:layout_width = "300dp"
-            android:hint="비밀번호를 입력하세요"
+            android:hint="@string/input_pwd"
             android:lines="1"
             android:singleLine="true"
             android:textCursorDrawable="@null"
@@ -54,7 +55,7 @@
         <Button
             android:layout_height="50dp"
             android:layout_width="300dp"
-            android:text="로그인"
+            android:text="@string/login"
             android:textStyle="bold"
             android:background="@color/colorDeep"
             android:textSize="15dp"
@@ -66,7 +67,7 @@
 
         <CheckBox
             android:layout_marginTop="7dp"
-            android:text="자동 로그인"
+            android:text="@string/auto_login"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:id="@+id/auto_login" />
@@ -81,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
-                android:text="처음 오셨나요?"/>
+                android:text="@string/been_first"/>
 
             <Button
                 android:layout_height="wrap_content"
@@ -90,7 +91,7 @@
                 android:background="@null"
                 android:textSize="15dp"
                 android:textStyle="bold"
-                android:text =  "회원가입"
+                android:text="@string/join"
                 android:onClick = "join"
                 android:id = "@+id/btnJoin"/>
 

@@ -1,6 +1,7 @@
 package com.yein.dutch;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,8 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void join(View view){
-        Intent intent = new Intent(getApplicationContext(), null);
-        //
+        Intent intent = new Intent(this, JoinActivity.class);
         startActivity(intent);
     }
 
