@@ -1,8 +1,10 @@
 package com.yein.dutch;
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,8 +38,8 @@ public class JoinActivity extends AppCompatActivity {
 
         if(pwd.equals(chk)){
             if(id.getBytes().length > 0 && pwd.getBytes().length > 0){
-                InputMemberToDB inputMemberToDB = new InputMemberToDB();
-                inputMemberToDB.execute(getString(R.string.default_link)+"join.php", id, pwd);
+                GetResultFromServer getResultFromServer = new GetResultFromServer();
+                getResultFromServer.execute(getString(R.string.default_link)+"join.php", id, pwd);
             }else{
                 Snackbar.make(view,getString(R.string.input_id_pwd),Snackbar.LENGTH_SHORT).show();
             }
@@ -46,6 +48,37 @@ public class JoinActivity extends AppCompatActivity {
         }
     }
 
+    class GetResultFromServer extends InputMemberToDB{
+        @Override
+        protected void onPostExecute(String result){
+            super.onPostExecute(result);
+            if(result.equalsIgnoreCase("success")){
+                showAlert("회원가입 성공");
+            }else{
+                Snackbar.make(findViewById(R.id.activity_join),getString(R.string.duplicated_id), Snackbar.LENGTH_SHORT).show();
+            }
+        }
+    }
 
+    public void showAlert(String message) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        // 알림창 제목 셋팅
+        alertDialogBuilder.setTitle("회원가입");
 
+        // AlertDialog 셋팅
+        alertDialogBuilder
+                .setMessage( message )
+                .setCancelable( false )
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        });
+        // 다이얼로그 생성
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        // 다이얼로그 보여주기
+        alertDialog.show();
+    }
 }
