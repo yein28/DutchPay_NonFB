@@ -13,7 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class InputMemberToDB extends AsyncTask<String, Void, String>{
+public class SendInfoToServer extends AsyncTask<String, Void, String>{
     // 새로운 스레드에서 수행됨
     @Override
     protected String doInBackground(String... strings) {

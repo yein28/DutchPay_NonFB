@@ -48,7 +48,7 @@ public class JoinActivity extends AppCompatActivity {
         }
     }
 
-    class GetResultFromServer extends InputMemberToDB{
+    class GetResultFromServer extends SendInfoToServer{
         @Override
         protected void onPostExecute(String result){
             super.onPostExecute(result);
