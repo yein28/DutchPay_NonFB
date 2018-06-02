@@ -1,7 +1,6 @@
 package com.yein.dutch;
 
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -15,8 +14,6 @@ public class JoinActivity extends AppCompatActivity {
     private EditText _id;
     private EditText _pwd;
     private EditText _pwdCheck;
-
-    String link = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +36,7 @@ public class JoinActivity extends AppCompatActivity {
         if(pwd.equals(chk)){
             if(id.getBytes().length > 0 && pwd.getBytes().length > 0){
                 GetResultFromServer getResultFromServer = new GetResultFromServer();
-                getResultFromServer.execute(getString(R.string.default_link)+"join.php", id, pwd);
+                getResultFromServer.execute(getString(R.string.join_link), id, pwd);
             }else{
                 Snackbar.make(view,getString(R.string.input_id_pwd),Snackbar.LENGTH_SHORT).show();
             }
@@ -63,7 +60,7 @@ public class JoinActivity extends AppCompatActivity {
     public void showAlert(String message) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         // 알림창 제목 셋팅
-        alertDialogBuilder.setTitle("회원가입");
+        alertDialogBuilder.setTitle(getString(R.string.join));
 
         // AlertDialog 셋팅
         alertDialogBuilder

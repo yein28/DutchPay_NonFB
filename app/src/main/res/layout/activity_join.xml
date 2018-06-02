@@ -14,7 +14,7 @@
         <TableLayout
             android:layout_marginTop = "40dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical">
 
             <TableRow
@@ -34,7 +34,7 @@
                     android:id="@+id/et_inputID"
                     android:layout_width="300dp"
                     android:layout_height="match_parent"
-                    android:hint="아이디를 입력해주세요"
+                    android:hint="@string/input_id"
                     android:maxLines="1" />
             </TableRow>
 
@@ -44,7 +44,7 @@
                     android:id="@+id/et_inputPwd"
                     android:layout_width="300dp"
                     android:layout_height="match_parent"
-                    android:hint="비밀번호"
+                    android:hint="@string/password"
                     android:inputType="textPassword"
                     android:maxLines="1" />
             </TableRow>
@@ -57,7 +57,7 @@
                     android:id="@+id/et_pwdCheck"
                     android:layout_width="300dp"
                     android:layout_height="match_parent"
-                    android:hint="비밀번호 확인"
+                    android:hint="@string/password_chk"
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:textCursorDrawable="@null" />
@@ -73,7 +73,7 @@
         android:layout_height="50dp"
         android:background="@color/colorSky"
         android:onClick="join"
-        android:text="확인"
+        android:text="@string/ok"
         android:textColor="@android:color/white" />
 
 </LinearLayout>
