@@ -25,11 +25,13 @@
             android:label="@string/join"
             android:theme="@style/AppThemeJoin"
             android:windowSoftInputMode="adjustUnspecified" />
-
         <activity
             android:name=".StateActivity"
             android:theme="@style/AppThemeState" />
         
+        <activity android:name=".RentActivity" />
+        <activity android:name=".LoanActivity" />
+        <activity android:name=".DutchActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".StateActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlue"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:text="@string/credit"/>
+
+    <RatingBar
+        android:id="@+id/rb_rate"
+        style="@style/Widget.AppCompat.RatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="0.01" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlue"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:text="@string/debt"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="18dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="15dp"
+            android:id="@+id/tv_debt" />
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/detail"
+            android:id="@+id/btn_debt" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlue"
+        android:layout_marginTop="20dp"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="@string/loan"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_loan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:textSize="18dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detail"
+            android:id="@+id/btn_loan" />
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="80dp"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:background="@color/colorSky"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textColor="@color/color3"
+        android:text="@string/go_dutch"
+        android:id="@+id/btn_dutch" />
+
+</LinearLayout>

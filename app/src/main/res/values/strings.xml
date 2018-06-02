@@ -6,6 +6,7 @@
     <!-- Link -->
     <string name="login_link">http://35.234.38.124/dutch/login.php</string>
     <string name="join_link">http://35.234.38.124/dutch/join.php</string>
+    <string name="state_link">http://35.234.38.124/dutch/state.php</string>
 
     <!-- Login -->
     <string name="input_id">아이디를 입력해주세요.</string>
@@ -22,4 +23,12 @@
     <string name="duplicated_id">이미 존재하는 ID입니다.</string>
     <string name="password">비밀번호</string>
     <string name="password_chk">비밀번호 확인</string>
+
+    <!-- State -->
+    <string name="credit">신용도</string>
+    <string name="debt">빌린 돈</string>
+    <string name="loan">빌려준 돈</string>
+    <string name="detail">자세히</string>
+    <string name="go_dutch">더치페이 하기</string>
+
 </resources>

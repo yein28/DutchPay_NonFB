@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), StateActivity.class);
                 intent.putExtra("id", _id.getText().toString());
                 startActivity(intent);
+                finish();
             }else{
                 Snackbar.make(findViewById(R.id.activity_login), getString(R.string.chk_id_pwd), Snackbar.LENGTH_SHORT).show();
             }
