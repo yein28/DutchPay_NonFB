@@ -19,6 +19,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         setContentView(R.layout.activity_login);
 
+        // Join, Login 버튼 리스너
+        findViewById(R.id.btn_login).setOnClickListener(this);
+        findViewById(R.id.btn_join).setOnClickListener(this);
+
         this._id = findViewById(R.id.et_id);
         this._pwd = findViewById(R.id.et_pwd);
     }

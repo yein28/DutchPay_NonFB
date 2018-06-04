@@ -23,8 +23,12 @@ public class StateActivity extends AppCompatActivity implements View.OnClickList
 
         rate = findViewById(R.id.rb_rate);
 
-        Intent intent = getIntent();
+        // 버튼 리스너
+        findViewById(R.id.btn_debt).setOnClickListener(this);
+        findViewById(R.id.btn_loan).setOnClickListener(this);
+        findViewById(R.id.btn_dutch).setOnClickListener(this);
 
+        Intent intent = getIntent();
         // 사용자의 ID를 상단에 표시, 없을 경우 종료
         this._id = intent.getExtras().getString("id");
         if(this._id == null) {
