@@ -89,7 +89,6 @@
                     android:id="@+id/btn_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="searchMember"
                     android:text="@string/ok"/>
             </LinearLayout>
 
@@ -130,7 +129,6 @@
                         android:layout_width="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/border"
-                        android:onClick="bank_select"
                         android:id="@+id/btn_bank"
                         android:textSize="15dp"
                         android:textColor="@android:color/white"

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -39,9 +40,11 @@ public class DutchActivity extends Bank implements View.OnClickListener{
     ListView lv_debtMember;
 
     DatePickerDialog datePicker;
+    String find_member;
 
     ArrayList<Member> debtMembers = new ArrayList<>();
     DebtMemberListAdapter debtMemberListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +56,9 @@ public class DutchActivity extends Bank implements View.OnClickListener{
         Intent intent = getIntent();
         this._id = intent.getExtras().getString("id");
 
-        findViewById(R.id.btn_bank).setOnClickListener(this);
+
+        btn_bank = findViewById(R.id.btn_bank);
+        btn_bank.setOnClickListener(this);
         findViewById(R.id.btn_search).setOnClickListener(this);
         findViewById(R.id.btn_complete).setOnClickListener(this);
 
@@ -62,10 +67,9 @@ public class DutchActivity extends Bank implements View.OnClickListener{
         et_account = findViewById(R.id.et_account);
 
         tv_date = findViewById(R.id.tv_date);
+        tv_date.setOnClickListener(this);
 
         lv_debtMember = findViewById(R.id.lv_debt_member);
-
-        datePicker = new DatePickerDialog(this, dateSetListener, year, month, day);
 
         // 은행 선택하는 커스텀 다이얼로그
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -78,6 +82,8 @@ public class DutchActivity extends Bank implements View.OnClickListener{
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        datePicker = new DatePickerDialog(this, dateSetListener, year, month, day);
     }
 
 
@@ -107,7 +113,7 @@ public class DutchActivity extends Bank implements View.OnClickListener{
 
                     Member member = new Member();
 
-                    member.setId(_id);
+                    member.setId(find_member);
                     member.setRate(rate);
                     member.setMoney("0");
 
@@ -180,8 +186,27 @@ public class DutchActivity extends Bank implements View.OnClickListener{
     }
 
     public void dutchComplete(){
-        String m = et_dutch_money.getText().toString();
-        
+        String money = et_dutch_money.getText().toString();
+        String date = tv_date.getText().toString();
+        String bank = btn_bank.getText().toString();
+        String account = et_account.getText().toString();
+
+        if( money.getBytes().length > 0  && !date.equalsIgnoreCase("날짜 입력해주세요.")
+                && debtMembers.size() > 0 && !bank.equalsIgnoreCase("선택") && account.getBytes().length >0 ) {
+            Intent intent = new Intent(getApplicationContext(), DutchCompleteActivity.class);
+
+            intent.putExtra("loan", _id);
+            intent.putExtra("money", money);
+            intent.putExtra("date", date);
+            intent.putExtra("bank", bank);
+            intent.putExtra("account", account);
+            intent.putExtra("members", debtMembers);
+
+            startActivity(intent);
+        }else{
+            Snackbar.make(findViewById(R.id.activity_dutch), "입력되지 않은 필수값이 있습니다.", Snackbar.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
@@ -189,12 +214,19 @@ public class DutchActivity extends Bank implements View.OnClickListener{
         int btn_id = view.getId();
         switch (btn_id){
             case R.id.btn_bank:
+                showDialog();
+                break;
+            case R.id.tv_date:
                 datePicker.show();
                 break;
             case R.id.btn_search:
-                String member = et_findMember.getText().toString();
-                GetDebtMemberInfo getDebtMemberInfo = new GetDebtMemberInfo();
-                getDebtMemberInfo.execute(member);
+                find_member = et_findMember.getText().toString();
+                if( find_member.length() > 0 ){
+                    GetDebtMemberInfo getDebtMemberInfo = new GetDebtMemberInfo();
+                    getDebtMemberInfo.execute(getString(R.string.search_link), find_member);
+                }else{
+                    Snackbar.make(findViewById(R.id.activity_dutch), "빌린 사람의 아이디를 입력해주세요.", Snackbar.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.btn_complete:
                 dutchComplete();

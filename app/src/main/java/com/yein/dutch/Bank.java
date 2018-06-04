@@ -8,15 +8,11 @@ import android.widget.Button;
 
 public class Bank extends AppCompatActivity {
 
+    Button btn_bank;
     View bank_list_view;
-    Button btn_bankChose;
     Dialog dialog_bank;
 
-    public void bank_select(View view){
-        showDialog();
-    }
-
-    private void showDialog() {
+    public void showDialog() {
         dialog_bank.setTitle("은행 선택");
         dialog_bank.setContentView(bank_list_view);
         dialog_bank.show();
@@ -26,34 +22,34 @@ public class Bank extends AppCompatActivity {
     public void myBank(View view) {
         switch(view.getId()) {
             case R.id.bank1:
-                btn_bankChose.setText(getString(R.string.nh_bank));
+                btn_bank.setText(getString(R.string.nh_bank));
                 break;
             case R.id.bank2:
-                btn_bankChose.setText(getString(R.string.kb_bank));
+                btn_bank.setText(getString(R.string.kb_bank));
                 break;
             case R.id.bank3:
-                btn_bankChose.setText(getString(R.string.shinhan_bank));
+                btn_bank.setText(getString(R.string.shinhan_bank));
                 break;
             case R.id.bank4:
-                btn_bankChose.setText(getString(R.string.jeonbook_bank));
+                btn_bank.setText(getString(R.string.jeonbook_bank));
                 break;
             case R.id.bank5:
-                btn_bankChose.setText(getString(R.string.ibk_bank));
+                btn_bank.setText(getString(R.string.ibk_bank));
                 break;
             case R.id.bank6:
-                btn_bankChose.setText(getString(R.string.post_bank));
+                btn_bank.setText(getString(R.string.post_bank));
                 break;
             case R.id.bank7:
-                btn_bankChose.setText(getString(R.string.daegu_bank));
+                btn_bank.setText(getString(R.string.daegu_bank));
                 break;
             case R.id.bank8:
-                btn_bankChose.setText(getString(R.string.woori_bank));
+                btn_bank.setText(getString(R.string.woori_bank));
                 break;
             case R.id.bank9:
-                btn_bankChose.setText(getString(R.string.hana_bank));
+                btn_bank.setText(getString(R.string.hana_bank));
                 break;
         }
-        btn_bankChose.setTextColor(Color.parseColor("#737373"));
+        btn_bank.setTextColor(Color.parseColor("#737373"));
         dialog_bank.cancel();
     }
 }
