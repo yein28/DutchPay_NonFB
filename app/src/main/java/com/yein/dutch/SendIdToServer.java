@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class GetStateFromServer extends AsyncTask<String, Void, String> {
+public class SendIdToServer extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
         String server = strings[0];

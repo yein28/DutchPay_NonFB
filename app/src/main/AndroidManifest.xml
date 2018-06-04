@@ -28,10 +28,22 @@
         <activity
             android:name=".StateActivity"
             android:theme="@style/AppThemeState" />
-        
-        <activity android:name=".RentActivity" />
-        <activity android:name=".LoanActivity" />
-        <activity android:name=".DutchActivity"></activity>
+        <activity
+            android:name=".DebtActivity"
+            android:label="빌린 돈"
+            android:theme="@style/AppThemeList" />
+        <activity
+            android:name=".LoanActivity"
+            android:label="빌려준 돈"
+            android:theme="@style/AppThemeList" />
+        <activity
+            android:name=".DutchActivity"
+            android:label="더치페이"
+            android:theme="@style/AppThemeDutch"
+            android:windowSoftInputMode="adjustUnspecified" />
+        <activity
+            android:name=".DutchCompleteActivity"
+            android:theme="@style/AppThemeDutch"/>
     </application>
 
 </manifest>

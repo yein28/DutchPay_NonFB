@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_marginBottom="20dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/bank1"
+                android:layout_marginEnd="45dp"
+                android:onClick="myBank"
+                android:text="@string/nh_bank"
+                android:textColor="@color/colorBlue"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/bank2"
+                android:layout_marginEnd="45dp"
+                android:onClick="myBank"
+                android:text="@string/kb_bank"
+                android:textColor="@color/colorBlue"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/bank3"
+                android:onClick="myBank"
+                android:text="@string/shinhan_bank"
+                android:textColor="@color/colorBlue"
+                android:textSize="15dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginBottom="20dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/bank4"
+                android:layout_marginEnd="45dp"
+                android:onClick="myBank"
+                android:text="@string/jeonbook_bank"
+                android:textColor="@color/colorBlue"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/bank5"
+                android:layout_marginEnd="45dp"
+                android:onClick="myBank"
+                android:text="@string/ibk_bank"
+                android:textColor="@color/colorBlue"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/bank6"
+                android:onClick="myBank"
+                android:text="@string/post_bank"
+                android:textColor="@color/colorBlue"
+                android:textSize="15dp" />
+
+        </TableRow>
+
+        <TableRow android:gravity="center">
+
+            <TextView
+                android:id="@+id/bank7"
+                android:layout_marginEnd="45dp"
+                android:onClick="myBank"
+                android:text="@string/daegu_bank"
+                android:textColor="@color/colorBlue"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/bank8"
+                android:layout_marginEnd="45dp"
+                android:onClick="myBank"
+                android:text="@string/woori_bank"
+                android:textColor="@color/colorBlue"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/bank9"
+                android:layout_marginEnd="20dp"
+                android:onClick="myBank"
+                android:text="@string/hana_bank"
+                android:textColor="@color/colorBlue"
+                android:textSize="15dp" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

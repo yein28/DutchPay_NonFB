@@ -23,8 +23,12 @@ public class StateActivity extends AppCompatActivity implements View.OnClickList
 
         rate = findViewById(R.id.rb_rate);
 
-        Intent intent = getIntent();
+        // 버튼 리스너
+        findViewById(R.id.btn_debt).setOnClickListener(this);
+        findViewById(R.id.btn_loan).setOnClickListener(this);
+        findViewById(R.id.btn_dutch).setOnClickListener(this);
 
+        Intent intent = getIntent();
         // 사용자의 ID를 상단에 표시, 없을 경우 종료
         this._id = intent.getExtras().getString("id");
         if(this._id == null) {
@@ -42,7 +46,7 @@ public class StateActivity extends AppCompatActivity implements View.OnClickList
         setStateToUI.execute(getString(R.string.state_link),this._id);
     }
 
-    class SetStateToUI extends GetStateFromServer{
+    class SetStateToUI extends SendIdToServer{
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
@@ -59,7 +63,7 @@ public class StateActivity extends AppCompatActivity implements View.OnClickList
         int btn_id = view.getId();
 
         if( btn_id == R.id.btn_debt ){
-            intent = new Intent(getApplicationContext(), RentActivity.class);
+            intent = new Intent(getApplicationContext(), DebtActivity.class);
             intent.putExtra( "id", this._id);
         }else if( btn_id == R.id.btn_loan ){
             intent = new Intent(getApplicationContext(), LoanActivity.class);
@@ -69,6 +73,7 @@ public class StateActivity extends AppCompatActivity implements View.OnClickList
             intent.putExtra( "id", this._id );
             intent.putExtra("rate", this._rate);
         }
+
         startActivity(intent);
     }
 }
