@@ -41,7 +41,7 @@
 
         <EditText
             android:layout_height="50dp"
-            android:layout_width = "300dp"
+            android:layout_width="300dp"
             android:hint="@string/input_pwd"
             android:lines="1"
             android:singleLine="true"
@@ -50,7 +50,7 @@
             android:textColorHint="@color/colorGray"
             android:theme="@style/MyEditTextTheme"
             android:inputType="textPassword"
-            android:id = "@+id/et_pwd" />
+            android:id="@+id/et_pwd" />
 
         <Button
             android:layout_height="50dp"
@@ -59,10 +59,9 @@
             android:textStyle="bold"
             android:background="@color/colorDeep"
             android:textSize="15dp"
-            android:onClick="login"
             android:textColor="@android:color/white"
             android:layout_marginTop="80dp"
-            android:id="@+id/btnLogin"/>
+            android:id="@+id/btn_login"/>
 
 
         <CheckBox
@@ -92,8 +91,7 @@
                 android:textSize="15dp"
                 android:textStyle="bold"
                 android:text="@string/join"
-                android:onClick = "join"
-                android:id = "@+id/btnJoin"/>
+                android:id = "@+id/btn_join"/>
 
         </LinearLayout>
     </LinearLayout>
