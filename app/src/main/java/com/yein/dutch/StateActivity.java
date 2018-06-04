@@ -46,7 +46,7 @@ public class StateActivity extends AppCompatActivity implements View.OnClickList
         setStateToUI.execute(getString(R.string.state_link),this._id);
     }
 
-    class SetStateToUI extends GetStateFromServer{
+    class SetStateToUI extends SendIdToServer{
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
@@ -63,7 +63,7 @@ public class StateActivity extends AppCompatActivity implements View.OnClickList
         int btn_id = view.getId();
 
         if( btn_id == R.id.btn_debt ){
-            intent = new Intent(getApplicationContext(), RentActivity.class);
+            intent = new Intent(getApplicationContext(), DebtActivity.class);
             intent.putExtra( "id", this._id);
         }else if( btn_id == R.id.btn_loan ){
             intent = new Intent(getApplicationContext(), LoanActivity.class);
@@ -73,6 +73,7 @@ public class StateActivity extends AppCompatActivity implements View.OnClickList
             intent.putExtra( "id", this._id );
             intent.putExtra("rate", this._rate);
         }
+
         startActivity(intent);
     }
 }

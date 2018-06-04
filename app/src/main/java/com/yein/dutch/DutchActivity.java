@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -20,8 +21,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class DutchActivity extends Bank implements View.OnClickListener{
 
@@ -33,11 +36,12 @@ public class DutchActivity extends Bank implements View.OnClickListener{
     EditText et_account;
 
     TextView tv_date;
-    ListView lv_rentMember;
+    ListView lv_debtMember;
 
     DatePickerDialog datePicker;
 
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
+    ArrayList<Member> debtMembers = new ArrayList<>();
+    DebtMemberListAdapter debtMemberListAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +63,8 @@ public class DutchActivity extends Bank implements View.OnClickListener{
 
         tv_date = findViewById(R.id.tv_date);
 
+        lv_debtMember = findViewById(R.id.lv_debt_member);
+
         datePicker = new DatePickerDialog(this, dateSetListener, year, month, day);
 
         // 은행 선택하는 커스텀 다이얼로그
@@ -78,8 +84,8 @@ public class DutchActivity extends Bank implements View.OnClickListener{
     private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            String msg = String.format("%d/%d/%d", year, month + 1, dayOfMonth);
-            tv_date.setText(dateFormat.format());
+            String msg = String.format(Locale.US, "%d/%d/%d", year, month + 1, dayOfMonth);
+            tv_date.setText(msg);
         }
     };
 
@@ -93,27 +99,24 @@ public class DutchActivity extends Bank implements View.OnClickListener{
         return super.onOptionsItemSelected(item);
     }
 
-
-    private class searchMember extends SendIdToServer{
+    private class GetDebtMemberInfo extends SendIdToServer{
         @Override
-        protected void onPostExecute(String s) {
+        protected void onPostExecute(String rate) {
             try {
-                if (!s.equalsIgnoreCase("fail")) {
+                if (!rate.equalsIgnoreCase("fail")) {
+
                     Member member = new Member();
-                    member.id = id;
-                    member.rate = s;
 
-                    rentmembers.add(member);
+                    member.setId(_id);
+                    member.setRate(rate);
+                    member.setMoney("0");
 
-                    DutchMember dutchMember = new DutchMember(id);
-                    dutchMember.info.add(s);
+                    debtMembers.add(member);
 
-                    rentmembers2.add(dutchMember);
+                    debtMemberListAdapter= new DebtMemberListAdapter(debtMembers);
 
-                    myAdapter = new MyAdapter(DutchActivity.this, R.layout.id_ratingbar, rentmembers2) ;
-
-                    lv_rentMember.setAdapter(myAdapter);
-                    lv_rentMember.setOnItemClickListener(itemClickListener);
+                    lv_debtMember.setAdapter(debtMemberListAdapter);
+                    lv_debtMember.setOnItemClickListener(new DebtMemberListener());
                 }else {
                     showAlert("사용자 검색", "해당 사용자가 존재하지 않습니다.");
                 }
@@ -121,6 +124,35 @@ public class DutchActivity extends Bank implements View.OnClickListener{
                 Log.e("Error", "Exception: " + e.getMessage());
             }
             et_findMember.setText("");
+        }
+    }
+
+    class DebtMemberListener implements AdapterView.OnItemClickListener{
+
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext()) ;
+            alertDialogBuilder
+                    .setTitle("주의")
+                    .setMessage("삭제하시겠습니까?")
+                    .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //삭제 상황 입력
+                            debtMembers.remove(i);
+                            debtMemberListAdapter.notifyDataSetChanged();
+                            dialog.cancel();
+                        }
+                    })
+                    .setNegativeButton("아니오", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                       }
+                    });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
         }
     }
 
@@ -148,7 +180,8 @@ public class DutchActivity extends Bank implements View.OnClickListener{
     }
 
     public void dutchComplete(){
-
+        String m = et_dutch_money.getText().toString();
+        
     }
 
     @Override
@@ -160,11 +193,12 @@ public class DutchActivity extends Bank implements View.OnClickListener{
                 break;
             case R.id.btn_search:
                 String member = et_findMember.getText().toString();
+                GetDebtMemberInfo getDebtMemberInfo = new GetDebtMemberInfo();
+                getDebtMemberInfo.execute(member);
                 break;
             case R.id.btn_complete:
                 dutchComplete();
                 break;
-
         }
     }
 }

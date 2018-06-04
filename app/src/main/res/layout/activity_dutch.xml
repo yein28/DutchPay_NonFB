@@ -99,7 +99,7 @@
                 android:layout_height="165dp"
                 android:divider="#00000000"
                 android:dividerHeight="1dp"
-                android:id="@+id/lv_loan_member"
+                android:id="@+id/lv_debt_member"
                 android:layout_weight="0.11" />
 
             <TableLayout
