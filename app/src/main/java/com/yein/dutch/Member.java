@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Member implements Serializable{
     private String id;
     private String rate;
-    private String money;
+    private int money;
 
     public String getId() {
         return id;
@@ -23,11 +23,11 @@ public class Member implements Serializable{
         this.rate = rate;
     }
 
-    public String getMoney() {
+    public int getMoney() {
         return money;
     }
 
-    public void setMoney(String money) {
+    public void setMoney(int money) {
         this.money = money;
     }
 

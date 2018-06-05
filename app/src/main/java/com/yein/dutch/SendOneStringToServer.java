@@ -10,15 +10,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class SendIdToServer extends AsyncTask<String, Void, String> {
+public class SendOneStringToServer extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
         String server = strings[0];
-        String id = strings[1];
+        String var = strings[1];
 
         try {
-            String endId = URLEncoder.encode(id, "UTF-8");
-            String param = "id="+endId;
+            String param = "var="+URLEncoder.encode(var, "UTF-8");
+            //String param = "argv="+endId;
 
             URL url = new URL(server);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
