@@ -2,7 +2,7 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp">
+    android:layout_marginTop="10dp">
 
     <TableRow
         android:layout_width="match_parent"
@@ -10,26 +10,32 @@
         android:gravity="center_vertical" >
 
         <TextView
-            android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:textSize = "18sp"
-            android:id= "@+id/tv_debt_member_id"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_complete_debt_id"
+            android:textColor="@color/colorGrayDeep"
+            android:textSize="18sp" />
 
         <RatingBar
-            android:id="@+id/rb_debt_member_rate"
+            android:id="@+id/rb_complete_debt_rate"
             style="@android:style/Widget.DeviceDefault.RatingBar.Indicator"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
             android:numStars="5"
             android:rating="3" />
 
-        <View
+        <TextView
+            android:text="money"
             android:layout_width="0dp"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5">
-        </View>
+            android:id="@+id/tv_complete_debt_money"
+            android:textColor="@color/colorGrayDeep"
+            android:gravity="center"
+            android:textSize="18sp" />
+
     </TableRow>
 </TableLayout>
