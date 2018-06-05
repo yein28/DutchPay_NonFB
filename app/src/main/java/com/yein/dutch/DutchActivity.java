@@ -88,7 +88,7 @@ public class DutchActivity extends Bank implements View.OnClickListener{
     private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            String msg = String.format(Locale.US, "%d / %d / %d", year, month + 1, dayOfMonth);
+            String msg = String.format(Locale.US, "%d/%d/%d", year, month + 1, dayOfMonth);
             tv_date.setText(msg);
         }
     };
@@ -103,7 +103,7 @@ public class DutchActivity extends Bank implements View.OnClickListener{
         return super.onOptionsItemSelected(item);
     }
 
-    private class GetDebtMemberInfo extends SendIdToServer{
+    private class GetDebtMemberInfo extends SendOneStringToServer{
         @Override
         protected void onPostExecute(String rate) {
             try {
@@ -113,7 +113,7 @@ public class DutchActivity extends Bank implements View.OnClickListener{
 
                     member.setId(find_member);
                     member.setRate(rate);
-                    member.setMoney("0");
+                    member.setMoney(0);
 
                     debtMembers.add(member);
 
