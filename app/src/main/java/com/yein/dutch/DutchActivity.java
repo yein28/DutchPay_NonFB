@@ -1,27 +1,26 @@
 package com.yein.dutch;
 
+
 import android.app.DatePickerDialog;
+
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -56,7 +55,6 @@ public class DutchActivity extends Bank implements View.OnClickListener{
         Intent intent = getIntent();
         this._id = intent.getExtras().getString("id");
 
-
         btn_bank = findViewById(R.id.btn_bank);
         btn_bank.setOnClickListener(this);
         findViewById(R.id.btn_search).setOnClickListener(this);
@@ -90,7 +88,7 @@ public class DutchActivity extends Bank implements View.OnClickListener{
     private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            String msg = String.format(Locale.US, "%d/%d/%d", year, month + 1, dayOfMonth);
+            String msg = String.format(Locale.US, "%d / %d / %d", year, month + 1, dayOfMonth);
             tv_date.setText(msg);
         }
     };
@@ -134,17 +132,15 @@ public class DutchActivity extends Bank implements View.OnClickListener{
     }
 
     class DebtMemberListener implements AdapterView.OnItemClickListener{
-
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext()) ;
+            final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DutchActivity.this);
             alertDialogBuilder
                     .setTitle("주의")
                     .setMessage("삭제하시겠습니까?")
                     .setPositiveButton("예", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            //삭제 상황 입력
                             debtMembers.remove(i);
                             debtMemberListAdapter.notifyDataSetChanged();
                             dialog.cancel();
@@ -164,11 +160,10 @@ public class DutchActivity extends Bank implements View.OnClickListener{
 
     public void showAlert(String title, String message) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        // 알림창 제목 셋팅
-        alertDialogBuilder.setTitle(title);
 
         // AlertDialog 셋팅
         alertDialogBuilder
+                .setTitle(title)
                 .setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton("OK",
@@ -191,8 +186,8 @@ public class DutchActivity extends Bank implements View.OnClickListener{
         String bank = btn_bank.getText().toString();
         String account = et_account.getText().toString();
 
-        if( money.getBytes().length > 0  && !date.equalsIgnoreCase("날짜 입력해주세요.")
-                && debtMembers.size() > 0 && !bank.equalsIgnoreCase("선택") && account.getBytes().length >0 ) {
+        if( money.getBytes().length > 0  && !date.equalsIgnoreCase(getString(R.string.input_date))
+                && debtMembers.size() > 0 && !bank.equalsIgnoreCase(getString(R.string.choose)) && account.getBytes().length >0 ) {
             Intent intent = new Intent(getApplicationContext(), DutchCompleteActivity.class);
 
             intent.putExtra("loan", _id);
@@ -204,7 +199,7 @@ public class DutchActivity extends Bank implements View.OnClickListener{
 
             startActivity(intent);
         }else{
-            Snackbar.make(findViewById(R.id.activity_dutch), "입력되지 않은 필수값이 있습니다.", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(R.id.activity_dutch), getString(R.string.must_input), Snackbar.LENGTH_SHORT).show();
         }
 
     }
@@ -225,7 +220,7 @@ public class DutchActivity extends Bank implements View.OnClickListener{
                     GetDebtMemberInfo getDebtMemberInfo = new GetDebtMemberInfo();
                     getDebtMemberInfo.execute(getString(R.string.search_link), find_member);
                 }else{
-                    Snackbar.make(findViewById(R.id.activity_dutch), "빌린 사람의 아이디를 입력해주세요.", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.activity_dutch), getString(R.string.input_debt_member), Snackbar.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.btn_complete:
