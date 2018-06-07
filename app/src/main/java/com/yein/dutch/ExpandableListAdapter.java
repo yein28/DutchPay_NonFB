@@ -110,7 +110,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter{
         } else if(type.equalsIgnoreCase("loan")) {
             if (view == null) {
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = inflater.inflate(R.layout.debt_child_list, viewGroup, false);
+                view = inflater.inflate(R.layout.loan_child_list, viewGroup, false);
             }
             RatingBar rate = view.findViewById(R.id.rate);
             TextView money = view.findViewById(R.id.tv_money);
