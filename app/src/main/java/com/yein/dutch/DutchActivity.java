@@ -109,11 +109,7 @@ public class DutchActivity extends Bank implements View.OnClickListener{
             try {
                 if (!rate.equalsIgnoreCase("fail")) {
 
-                    Member member = new Member();
-
-                    member.setId(find_member);
-                    member.setRate(rate);
-                    member.setMoney(0);
+                    Member member = new Member(find_member, rate, "0");
 
                     debtMembers.add(member);
 

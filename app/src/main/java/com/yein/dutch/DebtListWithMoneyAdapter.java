@@ -46,8 +46,7 @@ public class DebtListWithMoneyAdapter extends BaseAdapter{
 
         id.setText(getItem(i).getId());
         ratingBar.setRating(Float.parseFloat(getItem(i).getRate()));
-        String m = Integer.toString(getItem(i).getMoney());
-        money.setText(m);
+        money.setText(getItem(i).getMoney());
 
         return view;
     }

@@ -73,7 +73,7 @@ public class DutchCompleteActivity extends AppCompatActivity implements View.OnC
         int number = debtMembers.size();
         int individual = Integer.parseInt(money) / number;
         for( int i = 0 ; i < number ; i++ ){
-            debtMembers.get(i).setMoney(individual);
+            debtMembers.get(i).setMoney(Integer.toString(individual));
         }
 
         debtListWithMoneyAdapter = new DebtListWithMoneyAdapter(debtMembers);
@@ -90,13 +90,6 @@ public class DutchCompleteActivity extends AppCompatActivity implements View.OnC
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View view) {
-        if(view.getId() == R.id.btn_dutch_complete){
-            DebtMemberToJson();
-        }
     }
 
     private void DebtMemberToJson(){
@@ -161,7 +154,7 @@ public class DutchCompleteActivity extends AppCompatActivity implements View.OnC
                                 String m = revise_money.getText().toString();
                                 if (m.getBytes().length > 0) {
                                     Member rm = (Member) adapterView.getAdapter().getItem(i);
-                                    rm.setMoney(Integer.parseInt(m));
+                                    rm.setMoney(m);
                                     debtListWithMoneyAdapter.notifyDataSetChanged();
                                     dialog.cancel();
                                 } else {
@@ -179,6 +172,13 @@ public class DutchCompleteActivity extends AppCompatActivity implements View.OnC
             AlertDialog alertDialog = alertDialogBuilder.create();
 
             alertDialog.show();
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.btn_dutch_complete){
+            DebtMemberToJson();
         }
     }
 }
