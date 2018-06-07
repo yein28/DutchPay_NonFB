@@ -46,7 +46,7 @@ public class StateActivity extends AppCompatActivity implements View.OnClickList
         setStateToUI.execute(getString(R.string.state_link),this._id);
     }
 
-    class SetStateToUI extends SendIdToServer{
+    class SetStateToUI extends SendOneStringToServer{
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
